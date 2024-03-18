@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import connect from "./db/db";
 import userRouter from "./routes/users";
+import authRouter from "./routes/auth";
 
 const app = express();
 app.use(cors());
@@ -21,3 +22,4 @@ connect()
   });
 
 app.use("/api/users", userRouter);
+app.use("/api/auth", authRouter);
