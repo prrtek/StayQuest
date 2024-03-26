@@ -4,7 +4,7 @@ import "dotenv/config";
 import connect from "./db/db";
 import userRouter from "./routes/users";
 import authRouter from "./routes/auth";
-
+import cookieParser from "cookie-parser";
 const app = express();
 app.use(
   cors({
@@ -12,6 +12,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

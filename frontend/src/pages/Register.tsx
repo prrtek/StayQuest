@@ -2,8 +2,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import * as apiClient from "../api-clients";
-import { useAppContext } from "../contexts/AppContext";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+
 export type RegisterFormData = {
   firstName: string;
   lastName: string;
@@ -12,7 +13,6 @@ export type RegisterFormData = {
   confirmPassword: string;
 };
 function Register() {
-  const { showToast } = useAppContext();
   const {
     register,
     watch,
@@ -22,12 +22,12 @@ function Register() {
   const navigate = useNavigate();
   const mutation = useMutation(apiClient.register, {
     onSuccess: async () => {
-      showToast({ message: "Registration Success!", type: "SUCCESS" });
+      toast.success("Successfully created!");
       // await queryClient.invalidateQueries("validateToken");
       navigate("/");
     },
-    onError: (error: Error) => {
-      showToast({ message: error.message, type: "ERROR" });
+    onError: () => {
+      toast.error("This is an error!");
     },
   });
 

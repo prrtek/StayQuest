@@ -2,6 +2,8 @@ import express from "express";
 import { Router } from "express";
 import { userRegister } from "../controllers/user.controller";
 import { check } from "express-validator";
+import { verifyToken } from "../middleware/auth";
+import { Request, Response } from "express";
 const userRouter = Router();
 
 //api/users/register

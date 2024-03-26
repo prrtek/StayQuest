@@ -1,13 +1,14 @@
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
-
+import { Toaster } from "react-hot-toast";
 interface LayoutProps {
   children: React.ReactNode;
 }
 const Layout = ({ children }: LayoutProps) => {
   return (
     <div className='flex flex-col min-h-screen'>
+      <Toaster />
       <Header />
       <Hero />
       {/* <div className='container mx-auto'>
