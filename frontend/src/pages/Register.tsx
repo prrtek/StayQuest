@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import * as apiClient from "../api-clients";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ export type RegisterFormData = {
   confirmPassword: string;
 };
 function Register() {
+  const queryClient = useQueryClient();
   const {
     register,
     watch,
@@ -23,7 +24,7 @@ function Register() {
   const mutation = useMutation(apiClient.register, {
     onSuccess: async () => {
       toast.success("Successfully created!");
-      // await queryClient.invalidateQueries("validateToken");
+      await queryClient.invalidateQueries("validateToken");
       navigate("/");
     },
     onError: () => {

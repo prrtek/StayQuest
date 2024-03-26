@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 import { check } from "express-validator";
 import authLogin from "../controllers/login.controller";
 import { verifyToken } from "../middleware/auth";
+import { logout } from "../controllers/logout.controller";
 const authRouter = Router();
 
 //api/users/login
@@ -25,5 +26,7 @@ authRouter.get(
     res.status(200).send({ userId: req.userId });
   }
 );
+
+authRouter.post("/logout", logout);
 
 export default authRouter;
